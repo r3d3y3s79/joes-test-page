@@ -1,17 +1,101 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-            <meta charset="UTF-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>Joe's Test Page</title>
-        <link rel="stylesheet" href="styles.css">
-    </head>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nugget Finder for YouTube</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
 <body>
-        <div class="container">
-                    <h1>Welcome to Joe's Test Page</h1>
-                <p>This is a simple test page to demonstrate GitHub workflow and web development basics.</p>
-        </div>div>
+  <main class="app">
+    <header class="hero">
+      <p class="eyebrow">Study smarter on YouTube</p>
+      <h1>Nugget Finder</h1>
+      <p>
+        Surface high-signal videos in your niche, reduce fluff, and focus on creators who consistently share practical insights.
+      </p>
+    </header>
+
+    <section class="controls" aria-label="Search and filters">
+      <form id="search-form" class="search-grid">
+        <label>
+          <span>Niche / search criteria</span>
+          <input id="query" name="query" type="text" placeholder="e.g., Claude Code sub-agents skills" required>
+        </label>
+
+        <label>
+          <span>Keywords that indicate value</span>
+          <input id="value-keywords" name="valueKeywords" type="text" value="walkthrough, tutorial, repo, benchmark, implementation, case study">
+        </label>
+
+        <label>
+          <span>Keywords to avoid</span>
+          <input id="avoid-keywords" name="avoidKeywords" type="text" value="ai music, fake voice, auto generated, clickbait">
+        </label>
+
+        <label>
+          <span>Minimum channel credibility (0-100)</span>
+          <input id="credibility-threshold" name="credibilityThreshold" type="number" min="0" max="100" step="5" value="65">
+        </label>
+
+        <label>
+          <span>Max results</span>
+          <input id="max-results" name="maxResults" type="number" min="3" max="15" step="1" value="8">
+        </label>
+
+        <button type="submit">Find Gold Nuggets</button>
+      </form>
+    </section>
+
+    <section class="favorites" aria-label="Trusted creators">
+      <h2>Trusted creators boost</h2>
+      <p>
+        Wes Roth and Matt Burman are preloaded. Add more channels you trust and they will receive a ranking boost.
+      </p>
+      <form id="trusted-form" class="trusted-controls">
+        <input id="trusted-input" type="text" placeholder="Add channel name">
+        <button type="submit">Add</button>
+      </form>
+      <ul id="trusted-list" class="trusted-list"></ul>
+    </section>
+
+    <section aria-live="polite">
+      <h2>Ranked results</h2>
+      <p class="hint">
+        Demo uses sample data and a transparent scoring heuristic. Connect to YouTube Data API later for live search.
+      </p>
+      <div id="results" class="results"></div>
+    </section>
+
+    <section class="pipeline" aria-live="polite">
+      <h2>Transcript + on-screen visual extraction plan</h2>
+      <p class="hint">
+        Yes — you can extract both spoken content and critical visual moments. Paste a YouTube link and generate a practical pipeline.
+      </p>
+      <form id="pipeline-form" class="pipeline-form">
+        <label>
+          <span>YouTube URL</span>
+          <input id="video-url" name="videoUrl" type="url" placeholder="https://www.youtube.com/watch?v=..." required>
+        </label>
+        <button type="submit">Generate Analysis Plan</button>
+      </form>
+      <div id="pipeline-output" class="pipeline-output"></div>
+    </section>
+  </main>
+
+  <template id="video-card-template">
+    <article class="card">
+      <div class="card-header">
+        <h3 class="title"></h3>
+        <span class="score"></span>
+      </div>
+      <p class="meta"></p>
+      <p class="description"></p>
+      <ul class="signals"></ul>
+      <a class="watch-link" target="_blank" rel="noopener noreferrer">Watch on YouTube</a>
+    </article>
+  </template>
+
+  <script src="script.js"></script>
 </body>
-</html>html></p></h1>
-</body></title>
-    </head>
+</html>
